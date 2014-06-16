@@ -97,7 +97,7 @@
             e.className = e.className.replace("btn-primary", "btn-default");
             e.innerHTML = p.name;
             e.title = p.description;
-            e.onclick = function() { obj.setProject(i); }
+            e.onclick = function() { var x = i; obj.setProject(x); }
             menu.appendChild(e);
           }
           
