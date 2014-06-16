@@ -1,1 +1,75 @@
-Hi
+{
+	"totalcost": { "overdueandabandoned": 2036000000, "onlyoverdue": 2036000000 },	
+	"projects":  [
+		{	"name": "Amanda",
+			"amount": 1000000000,
+			"overdue": 0,
+			"status": "abandoned",
+			"description": "Arbejsmarkedsstyrelsen. Skrottet i 2008. Pris: En milliard kroner."
+		},
+		{
+			"name": "",
+			"amount": 80000000,
+			"overdue": 0,
+			"status": "abandoned",
+			"description": "Civilstraffe. Domstolsstyrelsens it-system. Skrottet i 2008. Pris: mindst 80 millioner kroner."
+		},
+		{
+			"name": "Polsag",
+			"amount": 500000000,
+			"overdue": 0,
+			"status": "abandoned",
+			"description": "Polsag. Politiets sagsbehandlingssystem. Kørt i pilotdrift i Bornholms Politi, men det viste sig ikke at fungere ordentligt. Skrottet i 2012. Pris: Ca. en halv milliard kroner."
+		},
+		{
+			"name": "PROASK",
+			"amount": 246000000,
+			"overdue": 0,
+			"status": "abandoned",
+			"description": "Arbejdsskadestyrelsens it-system. Skrottet i 2014. Pris: 164 millioner kroner."
+		},
+		{
+			"name": "DeMars",
+			"amount": 400000000,
+			"overdue": 400000000,
+			"status": "in use",
+			"description": "Forsvarets centrale IT-system. Stærkt forsinket. Sat i drift i 2004. Budget overskredet med minimum 400 millioner kroner."
+		},
+		{
+			"name": "Digital Tinglysning",
+			"amount": 266000000,
+			"overdue": 266000000,
+			"status": "in use",
+			"description": "Bestilt af Domstolsstyrelsen. Forsinket 1,5 år. Indført 2009 med store vanskeligheder. Budget overskredet med 266 millioner kroner."
+		},
+		{
+			"name": "Daccis",
+			"amount": 292000000,
+			"overdue": 0,
+			"status": "abandoned",
+			"description": "Forsvarets it-system. Skrottet i 2008. Pris: 410 mio. kr. Leverandøren, svenske SAAB, blev dog dømt til at betale en erstatning til Forsvaret på i alt 200 millioner i 2013."
+		}
+	],
+	"comparisons": [
+		{
+			"unit": "folkeskoleelev",
+			"cost": 66400
+		},
+		{
+			"unit": "offentlige ansatte",
+			"cost": 444120
+		},
+		{
+			"unit": "lars løkke tøj",
+			"cost": 152000
+		},
+		{
+			"unit": "gennemsnitslig danskers forbrug",
+			"cost": 306850
+		},
+		{
+			"unit": "nyt fjernsyn",
+			"cost": 10000
+		}
+	]
+}
