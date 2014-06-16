@@ -8,8 +8,7 @@
 
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="http://microajax.googlecode.com/files/microajax.minified.js"></script>
+    <script type="text/javascript" src="http://microajax.googlecode.com/files/microajax.minified.js"></script>
 
     <title>Offentlig IT</title>
   </head>
@@ -22,13 +21,16 @@
   
     <div class="row">  
       <div class="col-md-3">
-        <ul class="nav nav-stacked">
-          <li class="btn btn-primary">Alle IT projekter</li>
+        <ul class="nav nav-stacked" id="menu">
+          <li class="btn btn-primary" onclick="data.setProject(-1)">Alle IT projekter</li>
         </ul>
       </div>
       
-      <div class="col-md-9">
-        Hullubullu
+      <div class="col-md-9 row" id="view">
+        <div class="row">
+          <div class="col-md-2"></div>
+          <div class="col-md-10 scale"></div>
+        </div>
       </div>
     
     </div>
@@ -51,9 +53,50 @@
     </script>
 
     <script type="text/javascript">
-      microAjax("data.json", function (res) {
-        alert (res);
-      });
+      var data = (function() {
+        var view = document.getElementById("view");
+        var orig, projects, comparisons = {};
+        
+        var obj = {
+          setProject: function(project) {
+            switch(project) {
+              case -1:
+                
+              break;
+              default:
+                var cost = projects[project].cost
+                console.log(cost)
+                for (i in comparisons) {
+                  var e = orig.cloneNode(true)
+                  var c = e.children
+                  var comp = comparisons[i]
+                  c[0].innerHTML = comp.name
+                  c[1].innerHTML = Math.round(cost / comp.cost)
+                  view.appendChild(e)
+                }
+                
+              break;
+            }
+          }
+        }
+        
+        var res = '{"cases": [{"name":"PROASK","cost":246000000}], "comparisons": [{"name":"tv","cost":10000}, {"name":"Løkkes tøj", "cost":152000}]}'
+        //microAjax("data.json", function (res) {
+          var json = JSON.parse(res)
+          projects = json.cases
+          comparisons = json.comparisons
+          
+          // Store menu data
+          
+          // Store table data
+          var orig = view.children[0]
+          view.removeChild(orig)
+          
+          obj.setProject(0);
+        //});
+        
+        return obj
+      }());
     </script>
 
   </body>
