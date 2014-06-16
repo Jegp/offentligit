@@ -59,6 +59,10 @@
         
         var obj = {
           setProject: function(project) {
+            for (i in view.children) {
+              view.removeChild(i);
+            }
+          
             switch(project) {
               case -1:
                 
