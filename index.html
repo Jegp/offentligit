@@ -55,7 +55,7 @@
     <script type="text/javascript">
       var data = (function() {
         var view = document.getElementById("view");
-        var orig, projects, comparisons = {};
+        var dataElement, projects, comparisons = {};
         
         var obj = {
           setProject: function(project) {
@@ -67,10 +67,10 @@
                 var cost = projects[project].cost
                 console.log(cost)
                 for (i in comparisons) {
-                  var e = orig.cloneNode(true)
+                  var e = dataElement.cloneNode(true)
                   var c = e.children
                   var comp = comparisons[i]
-                  c[0].innerHTML = comp.name
+                  c[0].innerHTML = comp.unit
                   c[1].innerHTML = Math.round(cost / comp.cost)
                   view.appendChild(e)
                 }
@@ -80,20 +80,29 @@
           }
         }
         
-        var res = '{"cases": [{"name":"PROASK","cost":246000000}], "comparisons": [{"name":"tv","cost":10000}, {"name":"Løkkes tøj", "cost":152000}]}'
-        //microAjax("data.json", function (res) {
+        
+        microAjax("data.json", function (res) {
           var json = JSON.parse(res)
           projects = json.cases
           comparisons = json.comparisons
           
           // Store menu data
+          var menu = document.getElementById("menu");
+          var menuElement = menu.children[0];
+          for (i in projects) {
+            var e = menuElement.cloneNode(true);
+            var p = projects[i];
+            e.className = e.className.replace("btn-primary", "btn-default");
+            e.innerHTML = p.name;
+            e.title = p.description;
+          }
           
           // Store table data
-          var orig = view.children[0]
-          view.removeChild(orig)
+          dataElement = view.children[0]
+          view.removeChild(dataElement)
           
           obj.setProject(0);
-        //});
+        });
         
         return obj
       }());
