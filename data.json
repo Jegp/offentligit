@@ -8,11 +8,11 @@
 			"description": "Arbejsmarkedsstyrelsen. Skrottet i 2008. Pris: En milliard kroner."
 		},
 		{
-			"name": "",
+			"name": "Civilstraffe",
 			"amount": 80000000,
 			"overdue": 0,
 			"status": "abandoned",
-			"description": "Civilstraffe. Domstolsstyrelsens it-system. Skrottet i 2008. Pris: mindst 80 millioner kroner."
+			"description": "Domstolsstyrelsens it-system. Skrottet i 2008. Pris: mindst 80 millioner kroner."
 		},
 		{
 			"name": "Polsag",
