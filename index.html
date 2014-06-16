@@ -93,14 +93,16 @@
           var menu = document.getElementById("menu");
           var menuElement = menu.children[0];
           for (var i in projects) {
-            var x = i; 
-            var e = menuElement.cloneNode(true);
-            var p = projects[i];
-            e.className = e.className.replace("btn-primary", "btn-default");
-            e.innerHTML = p.name;
-            e.title = p.description;
-            e.onclick = function() { obj.setProject(x); }
-            menu.appendChild(e);
+            function doStuff(x) {
+              var e = menuElement.cloneNode(true);
+              var p = projects[x];
+              e.className = e.className.replace("btn-primary", "btn-default");
+              e.innerHTML = p.name;
+              e.title = p.description;
+              e.onclick = function() { obj.setProject(x); }
+              menu.appendChild(e);
+            }
+            doStuff(i); // Fucking function scope crap...
           }
           
           // Store table data
