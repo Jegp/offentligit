@@ -28,8 +28,8 @@
       
       <div class="col-md-9 row" id="view">
         <div class="row">
-          <div class="col-md-2"></div>
-          <div class="col-md-10 scale"></div>
+          <div class="col-md-4"></div>
+          <div class="col-md-8 scale"></div>
         </div>
       </div>
     
@@ -64,8 +64,7 @@
                 
               break;
               default:
-                var cost = projects[project].cost
-                console.log(cost)
+                var cost = projects[project].amount
                 for (i in comparisons) {
                   var e = dataElement.cloneNode(true)
                   var c = e.children
@@ -80,10 +79,9 @@
           }
         }
         
-        
         microAjax("data.json", function (res) {
           var json = JSON.parse(res)
-          projects = json.cases
+          projects = json.projects
           comparisons = json.comparisons
           
           // Store menu data
@@ -95,6 +93,7 @@
             e.className = e.className.replace("btn-primary", "btn-default");
             e.innerHTML = p.name;
             e.title = p.description;
+            menu.appendChild(e);
           }
           
           // Store table data
