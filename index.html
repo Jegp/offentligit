@@ -59,8 +59,8 @@
         
         var obj = {
           setProject: function(project) {
-            for (i in view.children) {
-              view.removeChild(i);
+            while (view.hasChildNodes()) {
+              view.removeChild(view.lastChild);
             }
           
             switch(project) {
