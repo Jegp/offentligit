@@ -92,6 +92,7 @@
           // Store menu data
           var menu = document.getElementById("menu");
           var menuElement = menu.children[0];
+          menuElement.onclick = function() { obj.setProject(-1); }
           for (var i in projects) {
             function doStuff(x) {
               var e = menuElement.cloneNode(true);
