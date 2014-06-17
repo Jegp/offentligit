@@ -16,7 +16,7 @@
   <body class="container">
 
     <div class="page-header">
-      <h1>Udgifter for større offentlige IT projekter siden 2000</h1>
+      <h1>Sammenligning af udgifter for større offentlige IT projekter siden 2000</h1>
     </div>
   
     <div class="row">  
@@ -55,30 +55,29 @@
     <script type="text/javascript">
       var data = (function() {
         var view = document.getElementById("view");
-        var dataElement, projects, comparisons = {};
+        var dataElement, projects, comparisons, totals = {};     
         
         var obj = {
-          setProject: function(project) {
-            console.log(project);
+          setCost: function(cost) {
             while (view.hasChildNodes()) {
               view.removeChild(view.lastChild);
             }
-          
+            for (i in comparisons) {
+              var e = dataElement.cloneNode(true)
+              var c = e.children
+              var comp = comparisons[i]
+              c[0].innerHTML = comp.unit
+              c[1].innerHTML = Math.round(cost / comp.cost)
+              view.appendChild(e)
+            }
+          },
+          setProject: function(project) {
             switch(project) {
               case -1:
-                
+                setCost(totals.overdueandabandoned)
               break;
               default:
-                var cost = projects[project].amount
-                for (i in comparisons) {
-                  var e = dataElement.cloneNode(true)
-                  var c = e.children
-                  var comp = comparisons[i]
-                  c[0].innerHTML = comp.unit
-                  c[1].innerHTML = Math.round(cost / comp.cost)
-                  view.appendChild(e)
-                }
-                
+                setCost(projects[project].amount)
               break;
             }
           }
@@ -88,6 +87,7 @@
           var json = JSON.parse(res)
           projects = json.projects
           comparisons = json.comparisons
+          totals = json.totalcost
           
           // Store menu data
           var menu = document.getElementById("menu");
@@ -109,7 +109,7 @@
           dataElement = view.children[0]
           view.removeChild(dataElement)
           
-          obj.setProject(0);
+          obj.setProject(-1);
         });
         
         return obj
