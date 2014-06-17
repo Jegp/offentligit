@@ -74,10 +74,10 @@
           setProject: function(project) {
             switch(project) {
               case -1:
-                setCost(totals.overdueandabandoned)
+                this.setCost(totals.overdueandabandoned)
               break;
               default:
-                setCost(projects[project].amount)
+                this.setCost(projects[project].amount)
               break;
             }
           }
