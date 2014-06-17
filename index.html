@@ -26,10 +26,13 @@
         </ul>
       </div>
       
-      <div class="col-md-9 row" id="view">
+      <div class="col-md-9 row view" id="view">
         <div class="row">
           <div class="col-md-4"></div>
-          <div class="col-md-8 scale"></div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-success"></div>
+            <div class="progress-bar progress-bar-warning"></div>
+          </div>
         </div>
       </div>
     
@@ -55,20 +58,20 @@
     <script type="text/javascript">
       var data = (function() {
         var view = document.getElementById("view");
-        var dataElement, projects, comparisons, totals = {};     
+        var projects, comparisons, totals = {};
         
         var obj = {
           setCost: function(cost) {
-            while (view.hasChildNodes()) {
-              view.removeChild(view.lastChild);
-            }
+            var total = totals.overdueandabandoned;
             for (i in comparisons) {
-              var e = dataElement.cloneNode(true)
-              var c = e.children
-              var comp = comparisons[i]
-              c[0].innerHTML = comp.unit
-              c[1].innerHTML = Math.round(cost / comp.cost)
-              view.appendChild(e)
+              var e = view.children;
+              var c = e[i].children;
+              var comp = comparisons[i];
+              var d = c[1].children;
+              var r = 100 * (cost / comp.cost) / (total / comp.cost);
+              d[0].innerHTML = Math.round(cost / comp.cost);
+              d[0].style.width = r + "%";
+              d[1].style.width = (100 - r) + "%";
             }
           },
           setProject: function(project) {
@@ -107,10 +110,19 @@
           }
           
           // Store table data
-          dataElement = view.children[0]
+          var dataElement = view.children[0]
+          for (var i in comparisons) {
+            var cost = totals.overdueandabandoned;
+            var comp = comparisons[i];
+            var c = dataElement.cloneNode(true);
+            var e = c.children;
+            e[0].innerHTML = comp.unit;
+            var p = e[1].children;
+            p[0].innerHTML = p[1].innerHTML = Math.round(cost / comp.cost);
+            p[0].style.width = p[1].style.width = "100%";
+            view.appendChild(c);
+          }
           view.removeChild(dataElement)
-          
-          obj.setProject(-1);
         });
         
         return obj
